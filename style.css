@@ -14,7 +14,7 @@ body {
 .container-star-wars {
   display:flex;
   justify-content: center; /* using flexbox to center the div */
-  color:rgba(255,255,0,1); /* the yellow color of Star Wars */
+  color:rgba(254,218,74,1); /* the yellow color of Star Wars */
 }
 .crawl header h1,
 .crawl header h2 {
