@@ -1,0 +1,27 @@
+body {
+  height: 100%; /* to fill the entire screen */
+  width:100%; /* to fill the entire screen */
+  font-family: 'Didact Gothic', sans-serif; /* Star Wars typography look-alike */
+  background-image: url("img/stars-sky2.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: hidden; /* to avoid the scrolling */
+
+}
+
+.container-star-wars {
+  display:flex;
+  justify-content: center; /* using flexbox to center the div */
+  color:rgba(255,255,0,1); /* the yellow color of Star Wars */
+}
+.crawl header h1,
+.crawl header h2 {
+  text-align: center;
+  text-transform: uppercase;
+}
+.container main {
+  line-height: 1.4em;
+  font-size:1.2em;
+}
