@@ -1,0 +1,70 @@
+body {
+  height:100%; /* to fill the entire screen */
+  width:100%; /* to fill the entire screen */
+  font-family: 'Didact Gothic', sans-serif; /* Star Wars typography look-alike */
+  background-image: url("../img/stars-sky2.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: hidden; /* to avoid the scrollbar of the browser */
+  margin: 0px;
+}
+
+.fade-mask {
+  position: absolute;
+  width: 100%;
+  height: 60vh;
+  top: 0px;
+  background-image: linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,1) 80%);
+  z-index: 1;
+}
+
+.container {
+  display:flex;
+  justify-content: center; /* using flexbox to center the div */
+  position: relative; /* Positioning the element */
+  height:800px; /* we need a height to have a value to scroll */
+  perspective:400px; /* defined the distance between the "user eyes" and the screen */
+  letter-spacing: 5px;
+  line-height: 500%;
+  text-align: justify; /* Only used to respect the Star Wars layout */
+  font-weight: bold;
+  color:rgba(254,218,74,1); /* the yellow color of Star Wars */
+}
+
+@keyframes scroll-effect {
+  0% {
+    top: 850px; /* Starts below the screen */
+    transform: rotateX(25deg) translateZ(0); /* Rotate 20° on X and stay close */
+  }
+  100% {
+    top: -10000px; /* Value high enough to be sure that all the text was "scrolled" */
+    transform: rotateX(30deg) translateZ(-3500px); /* Rotate 25° on X and go far away from the "user eyes" */
+  }
+}
+
+.scroll-effect {
+  position: relative; /* Positioning element to fix its top side*/
+  top: -10px; /* Fix the text a little outside the screen at start and end */
+  transform-origin: 50% 100%; /* Define the origin of the transform */
+  animation: scroll-effect 120s linear;
+  animation-fill-mode: forwards; /* to block the animation on its latest state */
+}
+.scroll-effect .titles h1,
+.scroll-effect .titles h2 {
+  text-align: center;
+  text-transform: uppercase;
+}
+.scroll-effect .titles h1 {
+  font-size: 7em;
+  margin-bottom: 1.2em;
+}
+.scroll-effect .titles h2 {
+  font-size: 4.5em;
+  margin-bottom: 1.7em;
+}
+
+.scroll-effect .text {
+  font-size:3em;
+}
