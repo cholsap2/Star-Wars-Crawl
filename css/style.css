@@ -1,7 +1,13 @@
+/*
+Personal reminder
+animation: [animation-name] [animation-duration] [animation-timing-function] [animation-delay] [animation-iteration-count] [animation-direction] [animation-fill-mode];
+*/
+
 body {
-  height:100%; /* to fill the entire screen */
-  width:100%; /* to fill the entire screen */
+  width:100%;
+  height:100%;
   font-family: 'Didact Gothic', sans-serif; /* Star Wars typography look-alike */
+  background-color: rgba(0,0,0,1);
   background-image: url("../img/stars-sky2.jpg");
   background-repeat: no-repeat;
   background-position: center center;
@@ -11,16 +17,59 @@ body {
   margin: 0px;
 }
 
-.fade-mask {
+.flex-fullscreen {
+  display: flex;
   position: absolute;
-  width: 100%;
-  height: 60vh;
-  top: 0px;
-  background-image: linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,1) 80%);
-  z-index: 1;
+  width:100%;
+  height:100%;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
 }
 
-.container {
+/* Background */
+.background {
+  background-color: rgba(0,0,0,1);
+  animation: fade-in 3s ease-in reverse;
+  animation-fill-mode: forwards;
+  animation-delay: 2s;
+}
+
+/* Intro Text */
+.intro-text {
+  opacity: 0;
+  color:rgba(29,111,136,1);
+  background-color: rgba(0,0,0,1);
+  font-size: 3.5em;
+  animation: fade-in 1s ease-in 0s 1 normal forwards, fade-in 1s ease-out 4s 1 reverse forwards;
+  z-index:10;
+}
+
+/* Logo */
+.container-logo-becode {
+  opacity: 0;
+  animation: fade-in 1s ease-in 4s normal forwards;
+}
+.logo-becode {
+  width:100%;
+  animation: scale-logo 10s linear 3.9s normal forwards;
+  z-index: 30;
+}
+
+/* Crawl Text */
+.fade-mask {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 50vh;
+  top: 0px;
+  background-image: linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,1) 80%);
+  z-index: 20;
+  animation: fade-in 5s linear 12.5s 1 normal forwards;
+}
+
+.container-crawl-effect {
   display:flex;
   justify-content: center; /* using flexbox to center the div */
   position: relative; /* Positioning the element */
@@ -30,41 +79,83 @@ body {
   line-height: 500%;
   text-align: justify; /* Only used to respect the Star Wars layout */
   font-weight: bold;
-  color:rgba(254,218,74,1); /* the yellow color of Star Wars */
+  color:rgba(255,188,0,1); /* the yellow color of Star Wars */
 }
 
-@keyframes scroll-effect {
-  0% {
-    top: 850px; /* Starts below the screen */
+.crawl-effect {
+  opacity: 0;
+  position: relative; /* Positioning element to fix its top side*/
+  transform-origin: 50% 100%; /* Define the origin of the transform */
+  animation: crawl-effect 180s linear, fade-in 2s ease-in;
+  animation-delay: 12.5s;
+  animation-fill-mode: forwards;
+  padding-top: 0px;
+  margin-top:0px;
+}
+.crawl-effect .titles h1,
+.crawl-effect .titles h2 {
+  text-align: center;
+  text-transform: uppercase;
+}
+.crawl-effect .titles h1 {
+  font-size: 7em;
+  margin-bottom: 1.2em;
+  padding-top: 0px;
+  margin-top:0px;
+}
+.crawl-effect .titles h2 {
+  font-size: 4.5em;
+  margin-bottom: 1.7em;
+}
+.crawl-effect .text {
+  font-size:3.5em;
+}
+
+
+footer {
+  position: fixed;
+  width: 100%;
+  top:calc(100% - 35px);
+  text-align: right;
+  font-size:0.8em;
+  z-index: 9999;
+}
+footer p {
+  padding-right:25px;
+  opacity: 0;
+  color:rgba(255,255,255,1);
+  animation: fade-in 5s linear 3.9s 1 normal forwards;
+}
+footer a {
+  color:rgba(255,255,255,1);
+}
+
+/*****
+* FX *
+*****/
+@keyframes crawl-effect {
+  from {
+    top:120%;
     transform: rotateX(25deg) translateZ(0); /* Rotate 20° on X and stay close */
   }
-  100% {
+  to {
     top: -10000px; /* Value high enough to be sure that all the text was "scrolled" */
     transform: rotateX(30deg) translateZ(-3500px); /* Rotate 25° on X and go far away from the "user eyes" */
   }
 }
-
-.scroll-effect {
-  position: relative; /* Positioning element to fix its top side*/
-  top: -10px; /* Fix the text a little outside the screen at start and end */
-  transform-origin: 50% 100%; /* Define the origin of the transform */
-  animation: scroll-effect 120s linear;
-  animation-fill-mode: forwards; /* to block the animation on its latest state */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-.scroll-effect .titles h1,
-.scroll-effect .titles h2 {
-  text-align: center;
-  text-transform: uppercase;
-}
-.scroll-effect .titles h1 {
-  font-size: 7em;
-  margin-bottom: 1.2em;
-}
-.scroll-effect .titles h2 {
-  font-size: 4.5em;
-  margin-bottom: 1.7em;
-}
-
-.scroll-effect .text {
-  font-size:3em;
+@keyframes scale-logo {
+  from {
+    transform: scale(1.4,1.4);
+  }
+  to {
+    transform: scale(0,0);
+  }
 }
